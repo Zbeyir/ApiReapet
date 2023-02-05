@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class SpartanTestWithPathParameters {
+public class Api_2_SpartanTestWithPathParameters {
 
     /**
      * Burada' ki -->  .baseURI ==> sistemden gelme biz yazmadik yani
