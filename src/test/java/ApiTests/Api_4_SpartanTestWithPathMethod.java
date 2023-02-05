@@ -10,6 +10,8 @@ import static org.testng.Assert.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class Api_4_SpartanTestWithPathMethod {
 
     @BeforeClass
@@ -62,12 +64,49 @@ public class Api_4_SpartanTestWithPathMethod {
         System.out.println("gender = " + gender);
         System.out.println("phone = " + phone);
 
-        assertEquals(id,10);
-        assertEquals(name,"Lorenza");
-        assertEquals(gender,"Female");
-        assertEquals(phone,3312820936l);
+        assertEquals(id, 10);
+        assertEquals(name, "Lorenza");
+        assertEquals(gender, "Female");
+        assertEquals(phone, 3312820936l);
+
+    }
+
+    @Test
+    public void test2() {
+
+        Response response = get("/api/spartans");
+
+        // extract first id
+        int firstId = response.path("id[0]"); // because index number start 0
+        System.out.println("firstId = " + firstId);
+
+        // extract first firstname
+        String first1stName = response.path("name[0]");
+        System.out.println("first1stName = " + first1stName);
+
+        // extract second firstname
+        String second1stName = response.path("name[1]");
+        System.out.println("second1stName = " + second1stName);
+
+        // get the last firstname
+        String last1stName = response.path("name[-1]");
+        System.out.println("last1stName = " + last1stName);
+
+        // get the last firstname --> buda sondan bir önceki
+        String last2stName = response.path("name[-2]");
+        System.out.println("last2stName = " + last2stName);
+
+        // extract all firstname and print them
+        List<String> names = response.path("name");
+        System.out.println(names);
+        System.out.println("names = " + names.size());
 
 
+        List<Object> phoneNumbers = response.path("phone");
+
+        for (Object phoneNumber : phoneNumbers) {
+            System.out.println(phoneNumber);
+        }
 
 
     }
