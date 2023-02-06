@@ -74,6 +74,11 @@ public class Api_4_SpartanTestWithPathMethod {
     @Test
     public void test2() {
 
+        /*
+        burada sadec kisa bir query yazdik cünkü;
+        ---> diger seylerle ilgilenmedigimiz icin bu teste
+         */
+
         Response response = get("/api/spartans");
 
         // extract first id
