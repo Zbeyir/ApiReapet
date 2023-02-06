@@ -1,5 +1,7 @@
 package ApiTests;
 
+import com.beust.ah.A;
+import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -22,7 +24,7 @@ public class Api_8_SpartanTestPojoDe_Serialization {
     }
 
     @Test
-    public void test1(){
+    public void test1() {
 
         Response response = given().accept(ContentType.JSON)
                 .pathParam("id", 16)
@@ -35,11 +37,39 @@ public class Api_8_SpartanTestPojoDe_Serialization {
 
         System.out.println(spartan1.toString());
 
-        assertEquals(spartan1.getId(),16);
-        assertEquals(spartan1.getName(),"Sinclair");
-        assertEquals(spartan1.getGender(),"Male");
-        assertEquals(spartan1.getPhone(),9714460354l);
+        assertEquals(spartan1.getId(), 16);
+        assertEquals(spartan1.getName(), "Sinclair");
+        assertEquals(spartan1.getGender(), "Male");
+        assertEquals(spartan1.getPhone(), 9714460354l);
 
+
+    }
+
+    @Test
+    public void gsonExample() {
+
+
+        Gson gson = new Gson();
+
+        String myJsonBody = "{\n" +
+                "    \"id\": 16,\n" +
+                "    \"name\": \"Sinclair\",\n" +
+                "    \"gender\": \"Male\",\n" +
+                "    \"phone\": 9714460354\n" +
+                "}";
+
+        // using gson method do de-deserialize our json body
+        Api_8_Spartan spartanMeta = gson.fromJson(myJsonBody,Api_8_Spartan.class);
+
+        System.out.println(spartanMeta.toString());
+
+        // serialization Java Object --> Json Body
+        Api_8_Spartan spartan = new Api_8_Spartan(101,"Mike","Male",1234567890l);
+
+        // converting custom class to json
+        String jsonBody = gson.toJson(spartan);
+
+        System.out.println(jsonBody);
 
     }
 
