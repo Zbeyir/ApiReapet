@@ -91,9 +91,37 @@ public class Api_9_SpartanPOSTRequest {
 
         assertEquals(response.statusCode(), 201);
 
+    }
 
-        // 21. de kaldik
+    @Test
+    public void POSTWithPojo() {
+        // create Spartan object and used as a body for post request
 
+        Api_8_Spartan spartan = new Api_8_Spartan();
+        spartan.setName("BijiPojo");
+        spartan.setGender("Male");
+        spartan.setPhone(1234567890l);
+
+        Response response = given().accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .and().body(spartan)
+                .when().post("/api/spartans");
+
+
+        assertEquals(response.statusCode(), 201);
+        assertEquals(response.contentType(), "application/json");
+
+        response.prettyPrint();
+
+        //=====================GET REQUEST=============
+
+        Response response2 = given().accept(ContentType.JSON)
+                .pathParam("id", 732)
+                .when().get("/api/spartans/{id}");
+
+        Api_8_Spartan spartanResponse = response2.body().as(Api_8_Spartan.class);
+
+        System.out.println(spartanResponse.toString());
 
     }
 }
