@@ -1,25 +1,17 @@
 package ApiTests;
 
-import com.beust.ah.A;
-import com.google.gson.Gson;
-
 import static io.restassured.RestAssured.*;
 
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
 
-import static io.restassured.RestAssured.baseURI;
-import static org.testng.Assert.*;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Api_9_SpartanPUTRequest {
+public class Api_10_SpartanPUTRequest {
 
     @BeforeClass
     public void setUp() {
